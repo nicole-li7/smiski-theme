@@ -1,38 +1,41 @@
-# Smiski Dark
+# Nicole's VS Code themes
 
-Dark VS Code themes in Smiski colours: sage and olive greens for the syntax,
-warm tan and caramel for types and numbers.
+Four themes in two families, all generated from one template so they stay
+consistent with each other.
 
-Two variants ship in the extension, identical except for the background ramp:
+| Theme | Mode | Base | Story |
+| --- | --- | --- | --- |
+| **Smiski Dark** | dark | `#1e2023` | neutral graphite, sage and olive syntax |
+| **Smiski Dark Pine** | dark | `#17211e` | clean blue-shifted pine green |
+| **Parisian Blush** | light | `#faf1ef` | blush paper, rose and copper syntax |
+| **Parisian Blush Noir** | dark | `#221a1c` | deep cocoa plum, macaron pink and champagne |
 
-| Variant | Base | Editor background |
-| --- | --- | --- |
-| **Smiski Dark** | neutral graphite, no green cast in the chrome | `#1e2023` |
-| **Smiski Dark Pine** | clean blue-shifted pine green | `#17211e` |
+Switch with **Preferences: Color Theme**. Side-by-side shots are in
+`images/variant-comparison.png` and `images/blush-comparison.png`.
 
-Switch with **Preferences: Color Theme**. See `images/variant-comparison.png`
-for the two side by side.
+## The two palettes
 
-## Accent palette
-
-Shared by both variants.
+Smiski, drawn from the figures themselves:
 
 | Role | Hex |
 | --- | --- |
 | Keywords, storage, tags | `#c5cf8f` |
-| Links, badges, headings, active borders | `#d8dfa0` |
-| Strings, focus border | `#a8c48a` |
-| Button fill, peek border | `#8ea86e` |
-| Functions and methods | `#e9ecc0` |
-| Types, classes, interfaces | `#d7b99a` |
-| Numbers, constants, decorators, `this` | `#c79a72` |
-| Properties and fields | `#c6cfb0` |
-| Parameters | `#d4d2ad` |
-| Errors | `#e39a9a` |
-| Warnings, modified files | `#e0cf92` |
+| Strings | `#a8c48a` |
+| Functions | `#e9ecc0` |
+| Types and classes | `#d7b99a` |
+| Numbers and constants | `#c79a72` |
 
-Every accent clears 4.5:1 contrast against both backgrounds. `build-themes.py`
-prints the ratios each time it runs.
+Parisian Blush, sampled from the two reference collages. Light values first,
+dark second:
+
+| Role | Light | Noir |
+| --- | --- | --- |
+| Keywords | `#b0476b` rose | `#e79ab0` macaron pink |
+| Strings | `#96603a` copper | `#e0b48c` champagne |
+| Functions | `#7d4f7a` plum | `#f2dcd8` pearl |
+| Types and classes | `#8a6157` mocha | `#d8b3ae` rosy beige |
+| Numbers | `#b2512e` terracotta | `#e59b78` copper |
+| The cool note | `#5f6b8a` silver lilac | `#a9a8bd` silver lilac |
 
 ## Editing the themes
 
@@ -43,17 +46,31 @@ python3 build-themes.py
 ```
 
 `themes/_template.json` is the structure, and every hex in it is a named slot
-(see `SLOTS` in the build script). `ACCENTS` holds the colours shared by both
-variants, and each entry in `VARIANTS` supplies its own background ramp. Change
-a colour in one place and both themes stay in sync.
+(see `SLOTS`). Slot names describe the role, such as `kw` or `bg_editor`, not
+the colour, because a variant may use an entirely different hue family. Each
+entry in `VARIANTS` layers its own values over the defaults:
 
-Reload the VS Code window after building so it re-reads the files.
+```
+ACCENTS  <-  variant["accents"]  <-  variant["neutrals"]
+```
+
+So a variant can override just the background ramp, as the two Smiski themes do,
+or the whole palette, as the two Blush themes do. The build also rewrites
+`contributes.themes` in `package.json`, so adding a variant to `VARIANTS` is the
+only step needed to ship it.
+
+Every build runs 22 contrast checks per theme and fails if any falls below its
+floor. Body text needs 4.5:1 and UI chrome needs 3.0:1. Adding a light variant
+also needs an `ansi` block, because a light terminal wants its neutral ramp
+flipped.
+
+Reload the VS Code window after building so it re-reads the files. A new or
+renamed variant does not appear in the theme picker until you do.
 
 ## Install
 
 The folder is symlinked into `~/.vscode/extensions/`, so VS Code picks it up on
-launch. Adding or renaming a variant needs a window reload before it shows up in
-the theme picker.
+launch.
 
 ## Corner Smiski
 
@@ -63,7 +80,10 @@ the editor is drawn by the
 extension. Its config lives in the user `settings.json` under `background.editor`
 and points at `images/corner-smiski.png`.
 
-After changing that config, run **Background: Enable and apply the background.**
+That config is global, not per-theme, so the Smiski also shows up behind the
+Blush themes. Set `background.enabled` to false to turn it off.
+
+After changing the config, run **Background: Enable and apply the background.**
 from the Command Palette and click Reload. The extension patches VS Code's own
 files, so nothing takes effect until you do.
 

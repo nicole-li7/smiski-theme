@@ -1,8 +1,8 @@
 {
   "name": "smiski-dark-theme",
-  "displayName": "Smiski Dark",
-  "description": "Dark VS Code themes in Smiski colours: sage, olive and warm tan. Neutral graphite or pine green base.",
-  "version": "1.1.0",
+  "displayName": "Nicole's Themes",
+  "description": "Four VS Code themes: Smiski greens in graphite or pine, and Parisian Blush in light or noir.",
+  "version": "1.2.0",
   "publisher": "nicole-li7",
   "author": "Nicole Li",
   "license": "MIT",
@@ -16,7 +16,10 @@
   "keywords": [
     "theme",
     "dark",
+    "light",
     "smiski",
+    "pink",
+    "blush",
     "green",
     "cute"
   ],
@@ -31,6 +34,16 @@
         "label": "Smiski Dark Pine",
         "uiTheme": "vs-dark",
         "path": "./themes/smiski-pine-color-theme.json"
+      },
+      {
+        "label": "Parisian Blush",
+        "uiTheme": "vs",
+        "path": "./themes/blush-color-theme.json"
+      },
+      {
+        "label": "Parisian Blush Noir",
+        "uiTheme": "vs-dark",
+        "path": "./themes/blush-noir-color-theme.json"
       }
     ]
   }
