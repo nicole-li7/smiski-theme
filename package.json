@@ -1,0 +1,37 @@
+{
+  "name": "smiski-dark-theme",
+  "displayName": "Smiski Dark",
+  "description": "Dark VS Code themes in Smiski colours: sage, olive and warm tan. Neutral graphite or pine green base.",
+  "version": "1.1.0",
+  "publisher": "nicole-li7",
+  "author": "Nicole Li",
+  "license": "MIT",
+  "icon": "images/icon.png",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "theme",
+    "dark",
+    "smiski",
+    "green",
+    "cute"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Smiski Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/smiski-dark-color-theme.json"
+      },
+      {
+        "label": "Smiski Dark Pine",
+        "uiTheme": "vs-dark",
+        "path": "./themes/smiski-pine-color-theme.json"
+      }
+    ]
+  }
+}
