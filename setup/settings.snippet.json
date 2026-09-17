@@ -1,0 +1,37 @@
+{
+    "workbench.colorTheme": "Parisian Blush",
+    "background.enabled": true,
+    "background.editor": {
+        "useFront": true,
+        "style": {
+            "background-position": "right 24px bottom 20px",
+            "background-size": "175px auto",
+            "background-repeat": "no-repeat",
+            "opacity": 1,
+            "mix-blend-mode": "normal"
+        },
+        "styles": [],
+        "images": [],
+        "interval": 0,
+        "random": false
+    },
+    "background.sidebar": {
+        "images": [
+            "file:///Users/nicole/Projects/smiski-theme/images/sidebar-cats.png"
+        ],
+        "opacity": 0.6,
+        "size": "130px auto",
+        "position": "right bottom",
+        "styles": [
+            {
+                "opacity": 0.8,
+                "background-position": "right -6px bottom 14px",
+                "background-size": "130px auto",
+                "background-repeat": "no-repeat",
+                "mix-blend-mode": "normal"
+            }
+        ],
+        "interval": 0,
+        "random": false
+    }
+}

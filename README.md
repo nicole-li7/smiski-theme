@@ -122,3 +122,32 @@ Because Background patches VS Code, it shows a one-time "installation appears to
 be corrupt" notice. Click the gear on it and choose "Don't Show Again".
 
 Smiski figures © Dreams Inc. Personal use only.
+
+## Restoring the setup on a new machine
+
+The themes live in this repo, but the background images are driven by VS Code
+settings that do not. `setup/` holds a copy of both.
+
+1. Clone this repo and symlink it into `~/.vscode/extensions/`.
+2. Install the Background extension:
+   `code --install-extension shalldie.background`
+3. Merge `setup/settings.snippet.json` into your user `settings.json`, fixing
+   the absolute image paths if the repo lives somewhere else.
+4. Copy `setup/keybindings.json` into your user keybindings, which binds
+   Cmd+Alt+B to the apply command.
+5. **Trust the folder.** This is the step that wastes an afternoon if you miss
+   it. The Background extension does not declare support for untrusted
+   workspaces, so VS Code disables it completely in Restricted Mode, and its
+   command silently does not exist. There is no error message. If the banner
+   at the top of the window offers Restricted Mode, click Manage and then Trust.
+6. Press Cmd+Alt+B and click Reload.
+
+Repeat step 6 after any change to a `background.*` setting. Nothing takes
+effect until the extension re-patches VS Code.
+
+### Turning the corner image on and off
+
+`background.editor.images` holds the corner image and `background.sidebar.images`
+holds the cats. Emptying a list switches that one off while leaving the other
+alone. The config is global rather than per-theme, so the corner Smiski would
+otherwise follow you onto the Blush themes, where it does not belong.

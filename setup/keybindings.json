@@ -1,0 +1,10 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        // Applies background image changes (corner Smiski, sidebar cats) and reloads.
+        // The Background extension patches VS Code's own files, so only this command
+        // can put a config change into effect.
+        "key": "cmd+alt+b",
+        "command": "extension.background.install"
+    }
+]
