@@ -145,9 +145,27 @@ settings that do not. `setup/` holds a copy of both.
 Repeat step 6 after any change to a `background.*` setting. Nothing takes
 effect until the extension re-patches VS Code.
 
-### Turning the corner image on and off
+### Switching themes and their background art together
 
-`background.editor.images` holds the corner image and `background.sidebar.images`
-holds the cats. Emptying a list switches that one off while leaving the other
-alone. The config is global rather than per-theme, so the corner Smiski would
-otherwise follow you onto the Blush themes, where it does not belong.
+`background.*` settings are global rather than per-theme, so the corner Smiski
+does not follow the theme on its own. It would otherwise sit there on the Blush
+themes, where it does not belong. `switch-theme.py` sets both at once:
+
+```
+python3 switch-theme.py smiski     # Smiski Dark   + corner Smiski
+python3 switch-theme.py pine       # Smiski Pine   + corner Smiski
+python3 switch-theme.py blush      # Parisian Blush, no corner image
+python3 switch-theme.py noir       # Blush Noir,     no corner image
+```
+
+Then press Cmd+Alt+B. The theme itself changes the instant the file is written,
+but the corner image does not, because the Background extension has to re-patch
+VS Code first. Pass `--dry-run` to see what would change without writing.
+
+To give a theme its own corner art, drop a cutout in `images/` and point that
+theme's entry in the `THEMES` table at it.
+
+The sidebar cats are deliberately left alone by the switcher, since they suit
+every theme. `background.editor.images` holds the corner image and
+`background.sidebar.images` holds the cats. Emptying either list switches that
+one off while leaving the other alone.
