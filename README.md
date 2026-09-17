@@ -83,6 +83,26 @@ and points at `images/corner-smiski.png`.
 That config is global, not per-theme, so the Smiski also shows up behind the
 Blush themes. Set `background.enabled` to false to turn it off.
 
+## Sidebar cats
+
+`background.sidebar` puts `images/sidebar-cats.png` in the bottom-right of the
+file tree. The sidebar is a better home for a picture than the editor is, since
+the tree is mostly empty space and short filenames, so nothing has to stay
+readable through it.
+
+Two traps in the extension are worth knowing before you touch this config:
+
+- **Opacity above 0.6 is silently reset to 0.1.** The extension clamps the
+  top-level `opacity`, so a higher value makes the image nearly vanish rather
+  than getting brighter. The per-image `styles` block is applied after the base
+  rule and is not clamped, which is where the real value of 0.8 lives.
+- **The default blend mode is `screen` on dark themes,** which washes artwork
+  out into a pale ghost. The `styles` block sets `mix-blend-mode: normal` so the
+  cats look the same whichever theme is active.
+
+The image sits above the tree at a high z-index but ignores clicks, so it never
+blocks anything. Raise or lower the `opacity` inside `styles` to taste.
+
 After changing the config, run **Background: Enable and apply the background.**
 from the Command Palette and click Reload. The extension patches VS Code's own
 files, so nothing takes effect until you do.
